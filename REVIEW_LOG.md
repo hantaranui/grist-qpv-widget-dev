@@ -1261,3 +1261,27 @@ Ajustement supplémentaire (07/11, demande de Pierre après test) :
 Tests : 913 tests, 0 échec (2 tests retirés, devenus obsolètes).
 Vérifié sur TEST par Hanta : le bloc à l'état Signée n'affiche plus que "Voir la convention signée" et "Remplacer le fichier signé" ; la pop-up et son téléchargement fonctionnent normalement.
 Commit : 9885357 (tests), 9df63f1 (code), 145c4b3 (backlog).
+
+cat >> REVIEW_LOG.md << 'EOF'
+
+## Tâche 28 — Sprint E4 : 5ème statut "Non retenu"
+
+Date : 09/11/2026
+Agents : chef-de-projet (cadrage), designer-ux (note UX, plusieurs itérations), dev-backend (données/logique), dev-interface (interface, nombreux ajustements visuels)
+Prompt : demande initiale de Pierre, carte "Non retenu" (actions refusées faute de budget ou non pertinentes, avec raison du refus)
+
+Note /5 : sans objet
+Ce qui a changé, résumé :
+- Nouveau statut "Non retenu" dans Actions.Statut, nouvelle colonne Actions.Raison_du_refus (Choice, liste extensible, 4 raisons définies).
+- Quand "Non retenu" est choisi, le champ "Raison du refus" apparaît (liste déroulante), obligatoire pour enregistrer, à la place de tout autre champ (même exclusivité que les 4 statuts existants).
+- Un statut inconnu n'affiche plus de sélecteur de date par erreur (bug corrigé au passage).
+- Affichage des 5 statuts : un seul conteneur flex, qui s'adapte automatiquement à la largeur réelle de l'écran (pas de disposition "3+2" forcée). Chaque case garde sa largeur naturelle, contour gris permanent + contour bleu sur la case choisie, groupées à gauche avec un espace fixe.
+- Bloc Financement ajusté (largeurs des colonnes) pour rester lisible avec plusieurs financeurs.
+- Info-bulles ajoutées sur "Raison du refus" et "Financeur" pour voir le texte complet si tronqué visuellement.
+- Export CSV : nouvelle colonne "Raison du refus" en dernière position.
+Ce qui a pris du temps : la disposition visuelle des 5 cases de statut a demandé de nombreux ajustements (E4-16 à E4-25) : contour, chevauchement à certaines largeurs, hauteur incohérente, espacement. Plusieurs approches techniques essayées avant de converger sur la solution finale (un seul flexbox adaptatif, sans disposition forcée).
+Tests : 276 tests, 0 échec. Vérifié à l'écran par Hanta dans DEV7 à plusieurs largeurs.
+Fichiers modifiés : src/actions-dashboard/script.js, src/actions-dashboard/style.css, actions-dashboard.html, docs/ux/statut-non-retenu.md (nouveau), docs/backlog.md
+Build refait : oui
+Reste à faire avant PROD : audit de sécurité en cours ; droits d'écriture sur Raison_du_refus par profil, à vérifier dans Grist avec "Voir en tant que" ; retour de Pierre et du collègue testeur sur TEST.
+EOF
