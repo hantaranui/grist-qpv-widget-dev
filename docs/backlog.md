@@ -540,3 +540,4 @@ Décisions prises :
 ### Risques
 
 Données personnelles hors de Grist ; copie de la logique CSV entre deux widgets ; conflits à la fusion avec E5, E6 et E7 (src/clubs/script.js, index.html, style.css, clubs.html, docs/backlog.md, REVIEW_LOG.md, README.md, CLAUDE.md).
+- E9-5 : bug trouvé après test réel (collègue) : les deux adresses fixes DASHBOARD_PROD_URL et DASHBOARD_TEST_URL n'ont pas le paramètre ?style=singlePage, qui maintient Grist en plein écran (sans le menu latéral). Résultat : la redirection automatique fait perdre le plein écran, contrairement à l'ancien système où l'utilisateur collait lui-même une adresse qui l'avait déjà. DÉCISION : ajouter ?style=singlePage à la fin des deux adresses fixes.
